@@ -285,7 +285,7 @@
                             </div>
                             <div class="text">
                                 <span class="probootstrap-meta"><i class="icon-calendar2"></i> {{$course->created_at->diffForHumans()}}</span>
-                                <h3>{{$course->title}}</h3>
+                                <h3><a href="{{route('courses.show',$course->id)}}">{{$course->title}}</a></h3>
                                 <p>{{str_limit($course->details,50)}}</p>
                                 <p><a href="#" class="btn btn-primary">Enroll now</a> <span class="enrolled-count">{{$course->students}} students enrolled</span></p>
                             </div>

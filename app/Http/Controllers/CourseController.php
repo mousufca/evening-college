@@ -68,9 +68,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        $courses = Course::all();
+        return view('admin.courses.single',compact('course','courses'));
     }
 
     /**

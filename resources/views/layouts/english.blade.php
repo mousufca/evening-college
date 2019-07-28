@@ -88,27 +88,22 @@
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">About</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('eng.about')}}">About Us</a></li>
-                            <li><a href="courses.html">Courses</a></li>
-                            <li><a href="course-single.html">Course Single</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="news.html">News</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="{{route('eng.courses')}}">Courses</a></li>
                     <li><a href="{{route('eng.teachers')}}">Teachers</a></li>
+                    <li><a href="{{route('eng.news')}}">News</a></li>
+                    <li><a href="{{route('eng.events')}}">Events</a></li>
 
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Pages</a>
                         <ul class="dropdown-menu">
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="courses.html">Courses</a></li>
-                            <li><a href="course-single.html">Course Single</a></li>
-                            <li><a href="gallery.html">Gallery</a></li>
-                            <li><a href="news.html">News</a></li>
+                            <li><a href="#">Events</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
         </div>

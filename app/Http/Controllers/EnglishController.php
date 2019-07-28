@@ -25,4 +25,18 @@ class EnglishController extends Controller
     public function about(){
         return view('english.about');
     }
+
+    public function news(){
+
+    }
+
+    public function events(){
+
+    }
+
+    public function courses(){
+        $featured = Course::all()->first();
+        $courses = Course::all();
+        return view('english.courses',compact('courses','featured'));
+    }
 }
