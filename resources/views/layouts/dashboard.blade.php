@@ -178,10 +178,10 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="">All News</a>
+                            <a href="{{route('news.index')}}">All News</a>
                         </li>
                         <li>
-                            <a href="">Add News</a>
+                            <a href="{{route('news.create')}}">Add News</a>
                         </li>
                     </ul>
                 </li>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class NewsController extends Controller
 {
@@ -13,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
-        return view('admin.courses.index',compact('courses'));
+        $news = News::all();
+        return view('admin.news.index',compact('news'));
     }
 
     /**
@@ -24,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
@@ -35,7 +37,27 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'details'=>'required',
+            'image'=>'required|file|mimes:jpeg,png,jpg'
+        ]);
+        $originalImage= $request->file('image');
+        $thumbnailImage = Image::make($originalImage);
+        $thumbnailPath = public_path().'/images/news/';
+        $thumbnailImage->resize(385,385);
+        $name = time().$originalImage->getClientOriginalName();
+        $path = $thumbnailPath.$name;
+        $thumbnailImage->save($path);
+
+        News::create([
+            'title'=>$request->title,
+            'details'=>$request->details,
+            'image'=>'images/news/'.$name
+        ]);
+
+        session()->flash('success','News Created');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -44,7 +66,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
         //
     }
@@ -57,7 +79,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.news.edit',compact('news'));
     }
 
     /**
@@ -67,9 +89,29 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+        'title'=>'required',
+        'details'=>'required',
+        'image'=>'file|mimes:jpeg,png,jpg'
+    ]);
+        if($request->hasFile('image')){
+            unlink($news->image);
+            $originalImage= $request->file('image');
+            $thumbnailImage = Image::make($originalImage);
+            $thumbnailPath = public_path().'/images/news/';
+            $thumbnailImage->resize(385,385);
+            $name = time().$originalImage->getClientOriginalName();
+            $path = $thumbnailPath.$name;
+            $thumbnailImage->save($path);
+            $news->image = 'images/news/'.$name;
+        }
+        $news->title = $request->title;
+        $news->details = $request->details;
+        $news->update();
+        session()->flash('success','News updated');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -78,8 +120,12 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        //
+        unlink($news->image);
+        $news->delete();
+
+        session()->flash('success','News deleted');
+        return redirect()->route('news.index');
     }
 }
