@@ -192,10 +192,10 @@
                     </a>
                     <ul class="ml-menu">
                         <li>
-                            <a href="">All Events</a>
+                            <a href="{{route('events.index')}}">All Events</a>
                         </li>
                         <li>
-                            <a href="">Add Event</a>
+                            <a href="{{route('events.create')}}">Add Event</a>
                         </li>
                     </ul>
                 </li>

@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        All Courses <a href="{{route('courses.create')}}" class="btn btn-success btn-sm m-l-30">Add Course</a>
+                        All Events <a href="{{route('events.create')}}" class="btn btn-success btn-sm m-l-30">Add Event</a>
                     </h2>
 
                 </div>
@@ -15,31 +15,31 @@
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Students</th>
+                                <th>Title</th>
+                                <th>Location</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Name</th>
-                                <th>Students</th>
+                                <th>Title</th>
+                                <th>Location</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            @foreach($courses as $course)
+                            @foreach($events as $event)
                                 <tr>
-                                    <td>{{$course->title}}</td>
-                                    <td>{{$course->students}}</td>
+                                    <td>{{$event->title}}</td>
+                                    <td>{{$event->location}}</td>
 
                                     <td>
-                                        <a href="{{route('courses.edit',$course->id)}}" class="btn btn-info btn-xs"><li class="material-icons">mode_edit</li></a>
+                                        <a href="{{route('events.edit',$event->id)}}" class="btn btn-info btn-xs"><li class="material-icons">mode_edit</li></a>
                                     </td>
                                     <td>
-                                        <form action="{{route('courses.destroy',$course->id)}}" method="POST">
+                                        <form action="{{route('events.destroy',$event->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-xs btn-danger"><i class="material-icons">delete_sweep</i></button>

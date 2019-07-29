@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class EventController extends Controller
 {
@@ -13,7 +15,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::all();
+        return view('admin.events.index',compact('events'));
     }
 
     /**
@@ -23,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.events.create');
     }
 
     /**
@@ -34,7 +37,29 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'details'=>'required',
+            'location'=>'required',
+            'image'=>'required|file|mimes:jpeg,png,jpg'
+        ]);
+        $originalImage= $request->file('image');
+        $thumbnailImage = Image::make($originalImage);
+        $thumbnailPath = public_path().'/images/events/';
+        $thumbnailImage->resize(385,385);
+        $name = time().$originalImage->getClientOriginalName();
+        $path = $thumbnailPath.$name;
+        $thumbnailImage->save($path);
+
+        Event::create([
+            'title'=>$request->title,
+            'details'=>$request->details,
+            'image'=>'images/events/'.$name,
+            'location'=>$request->location
+        ]);
+
+        session()->flash('success','Event Created');
+        return redirect()->route('events.index');
     }
 
     /**
@@ -54,9 +79,9 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+        return view('admin.events.edit',compact('event'));
     }
 
     /**
@@ -66,9 +91,31 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        $request->validate([
+            'title'=>'required',
+            'location'=>'required',
+            'details'=>'required',
+            'image'=>'file|mimes:jpeg,png,jpg'
+        ]);
+        if($request->hasFile('image')){
+            unlink($event->image);
+            $originalImage= $request->file('image');
+            $thumbnailImage = Image::make($originalImage);
+            $thumbnailPath = public_path().'/images/events/';
+            $thumbnailImage->resize(385,385);
+            $name = time().$originalImage->getClientOriginalName();
+            $path = $thumbnailPath.$name;
+            $thumbnailImage->save($path);
+            $event->image = 'images/events/'.$name;
+        }
+        $event->title = $request->title;
+        $event->location = $request->location;
+        $event->details = $request->details;
+        $event->update();
+        session()->flash('success','Event updated');
+        return redirect()->route('events.index');
     }
 
     /**
@@ -77,8 +124,12 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        unlink($event->image);
+        $event->delete();
+
+        session()->flash('success','Event deleted');
+        return redirect()->route('events.index');
     }
 }

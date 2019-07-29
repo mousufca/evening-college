@@ -6,15 +6,15 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>Update Course</h2>
+                    <h2>Update Event</h2>
                 </div>
                 <div class="body">
-                    <form method="POST" action="{{route('courses.update',$course->id)}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('events.update',$event->id)}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="text" class="form-control" name="title" required value="{{old('title')?old('title'):$course->title}}">
+                                <input type="text" class="form-control" name="title" required value="{{old('title')?old('title'):$event->title}}">
                                 <label class="form-label">Title</label>
                             </div>
                             @if($errors->has('title'))
@@ -38,12 +38,12 @@
 
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <input type="number" class="form-control" name="students" required value="{{old('students')?old('students'):$course->students}}">
+                                <input type="text" class="form-control" name="location" required value="{{old('location')?old('location'):$event->location}}">
                                 <label class="form-label">Students</label>
                             </div>
-                            @if($errors->has('students'))
+                            @if($errors->has('location'))
                                 <span class="col-pink">
-                                    {{$errors->first('students')}}
+                                    {{$errors->first('location')}}
                                 </span>
                             @endif
                         </div>
@@ -51,12 +51,12 @@
 
                         <div class="form-group form-float">
                             <div class="form-line">
-                                <textarea name="about" cols="30" rows="5" class="form-control no-resize" required>{{old('about')?old('about'):$course->details}}</textarea>
-                                <label class="form-label">About</label>
+                                <textarea name="details" cols="30" rows="5" class="form-control no-resize" required>{{old('details')?old('details'):$event->details}}</textarea>
+                                <label class="form-label">Details</label>
                             </div>
-                            @if($errors->has('about'))
+                            @if($errors->has('location'))
                                 <span class="col-pink">
-                                    {{$errors->first('about')}}
+                                    {{$errors->first('location')}}
                                 </span>
                             @endif
                         </div>

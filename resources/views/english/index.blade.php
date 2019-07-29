@@ -139,54 +139,19 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="owl-carousel" id="owl1">
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, ut.</p>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
+                                        @foreach($news as $n)
+                                            <div class="item">
+                                                <a href="#" class="probootstrap-featured-news-box">
+                                                    <figure class="probootstrap-media"><img src="{{asset($n->image)}}" alt="{{$n->title}}" class="img-responsive"></figure>
+                                                    <div class="probootstrap-text">
+                                                        <h3>{{$n->title}}</h3>
+                                                        <p>{{str_limit($n->details,50)}}</p>
+                                                        <span class="probootstrap-date"><i class="icon-calendar"></i>{{$n->created_at->diffForHumans()}}</span>
 
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_1.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis, officia.</p>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, dolores.</p>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, earum.</p>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-
-
-                                                </div>
-                                            </a>
-                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
                                         <!-- END item -->
                                     </div>
                                 </div>
@@ -202,49 +167,20 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="owl-carousel" id="owl2">
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-                                                    <span class="probootstrap-location"><i class="icon-location2"></i>White Palace, Brooklyn, NYC</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_1.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-                                                    <span class="probootstrap-location"><i class="icon-location2"></i>White Palace, Brooklyn, NYC</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_2.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-                                                    <span class="probootstrap-location"><i class="icon-location2"></i>White Palace, Brooklyn, NYC</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <!-- END item -->
-                                        <div class="item">
-                                            <a href="#" class="probootstrap-featured-news-box">
-                                                <figure class="probootstrap-media"><img src="img/img_sm_3.jpg" alt="Free Bootstrap Template by uicookies.com" class="img-responsive"></figure>
-                                                <div class="probootstrap-text">
-                                                    <h3>Tempora consectetur unde nisi</h3>
-                                                    <span class="probootstrap-date"><i class="icon-calendar"></i>July 9, 2017</span>
-                                                    <span class="probootstrap-location"><i class="icon-location2"></i>White Palace, Brooklyn, NYC</span>
-                                                </div>
-                                            </a>
-                                        </div>
+
+                                        @foreach($events as $event)
+                                            <div class="item">
+                                                <a href="#" class="probootstrap-featured-news-box">
+                                                    <figure class="probootstrap-media"><img src="{{asset($event->image)}}" alt="{{$event->title}}" class="img-responsive"></figure>
+                                                    <div class="probootstrap-text">
+                                                        <h3>{{$event->title}}</h3>
+                                                        <span class="probootstrap-date"><i class="icon-calendar"></i>{{$event->created_at->diffForHumans()}}</span>
+                                                        <span class="probootstrap-location"><i class="icon-location2"></i>{{$event->location}}</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endforeach
+
                                         <!-- END item -->
                                     </div>
                                 </div>
